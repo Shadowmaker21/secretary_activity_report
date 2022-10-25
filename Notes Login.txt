@@ -1,0 +1,498 @@
+User Login :
+
+admin / 123
+sekar1 / 123
+dir1 / 123
+dir2 / 123
+dir3 / 123
+siak / 123
+umum1 / 123
+sdm / 123
+
+
+Sekretaris buat surat
+Bidang
+Kredit -> dir1
+Operasional -> dir3
+
+Tidak disetujui = Konfirmasi (Direktur) => Alasan
+
+QR Code = nama user,Jabatan,Tgl menyetujui
+
+
+
+
+
+PR PERBAIKAN : 03 September 2022
+
+(SEKAR)
+
+- Ubah daftar email jadi checkbox x
+- Form persetujuan untuk notulen x
+- disable button
+
+
+
+(BAR)
+
+- Form untuk index, login, database, x
+
+
+
+PERBAIKAN TANGGAL : 05 SEPTEMBER 2022
+
+- untuk table outbox_mail(kirim email sudah bisa tampil nama file) v
+- Menampilkan nama pada daftar absen v
+- Absen Offline
+- Tambah form untuk upload berkas SK SE MEMO v
+- Tambah field table untuk upload berkas v
+- Menampilkan nama pada daftar absen v
+- Form Email tidak bisa input lebih dari 1 v
+- Page untuk absen notulen v
+- Untuk pilih di SK MEMO SE jenis ada yang kosong v
+- Persetujuan diberi Notes
+
+
+UPDATE TANGGAL 6 September 2022 :
+-Sudah bisa keluar qr code, tinggal buat cara input
+
+
+
+
+PERBAIKAN TANGGAL 08 SEPTEMBER 2022
+
+- PERBAIKAN FILE SK SE MEMO v
+- PROMOSI/DEMOSI/MUTASI SK V, SE, MEMO v
+- MENU EDIT SK SE MEMO X
+- TAMBAHAN JENIS SK SE MEMO 01 TABUNGAN DAN DEPOSITO V
+- ERROR KIRIM EMAIL SK SE MEMO V
+- PERBAIKAN PILIHAN JENIS 01 02 03 X
+
+
+GROUP_CONCAT(nama_user, tgl_join)
+
+
+
+
+
+SELECT hari,not_dekom.tanggal,not_dekom.tempat,not_dekom.jam,GROUP_CONCAT(absen2.nama_user) AS peserta,not_dekom.agenda,not_dekom.ket,not_dekom.jenis FROM not_dekom RIGHT JOIN absen2 ON not_dekom.agenda=absen2.agenda LIKE '%Rapat Bisnis' OR '%Rapat Direksi' OR '%Rapat Penyelesaian Kredit Bermasalah Per Cabang' OR '%Rapat Kerja' OR '%Rapat Kredit' OR '%Rapat Pra Raker' WHERE not_dekom.agenda BETWEEN absen2.agenda AND not_dekom.agenda
+
+
+
+SELECT hari,not_dir.tanggal,not_dir.tempat,not_dir.jam,GROUP_CONCAT(absen.nama_user) AS peserta,not_dir.agenda,not_dir.ket,not_dir.jenis FROM not_dir RIGHT JOIN absen ON not_dir.agenda=absen.agenda LIKE '%Rapat Bisnis' OR '%Rapat Direksi' OR '%Rapat Penyelesaian Kredit Bermasalah Per Cabang' OR '%Rapat Kerja' OR '%Rapat Kredit' OR '%Rapat Pra Raker' WHERE not_dir.agenda BETWEEN absen.agenda AND not_dir.agenda
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$(document).ready(function(){
+			 $(".alert").delay(3000).addClass("in").fadeOut("slow");
+		});
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": true, "autoWidth": false,
+      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+    //Initialize Select2 Elements
+    $('.select2').select2()
+    // Summernote
+    $('#summernote').summernote()
+  });
+
+  $(document).ready(function(){
+
+  });
+
+  // cab Semarang
+
+  function check_semarang(valx) {
+    if($(valx).prop('checked') == true){
+      $('.check_kantor_semarang').prop('checked',true);
+    }else{
+      $('.check_kantor_semarang').prop('checked',false);
+    }
+  }
+
+  function check_semarang_sub(valx) {
+    var xx = 0;
+    $('.check_kantor_semarang').each(function() {
+      if($(this).prop('checked') == false){
+        xx++;
+      }
+    });
+
+    if(xx > 0){
+      $('#knt_smg').prop('checked',false);
+    }else{
+      $('#knt_smg').prop('checked',true);
+    }
+  }
+
+  $(document).ready(function(){
+
+  });
+
+  // Pusat
+
+  function check_pusat(valx) {
+    if($(valx).prop('checked') == true){
+      $('.check_kantor_pusat').prop('checked',true);
+    }else{
+      $('.check_kantor_pusat').prop('checked',false);
+    }
+  }
+
+  function check_pusat_sub(valx) {
+    var xx = 0;
+    $('.check_kantor_pusat').each(function() {
+      if($(this).prop('checked') == false){
+        xx++;
+      }
+    });
+
+    if(xx > 0){
+      $('#knt_pst').prop('checked',false);
+    }else{
+      $('#knt_pst').prop('checked',true);
+    }
+  }
+
+  $(document).ready(function(){
+
+  });
+
+  // Weleri
+
+  function check_weleri(valx) {
+    if($(valx).prop('checked') == true){
+      $('.check_kantor_weleri').prop('checked',true);
+    }else{
+      $('.check_kantor_weleri').prop('checked',false);
+    }
+  }
+
+  function check_weleri_sub(valx) {
+    var xx = 0;
+    $('.check_kantor_weleri').each(function() {
+      if($(this).prop('checked') == false){
+        xx++;
+      }
+    });
+
+    if(xx > 0){
+      $('#knt_wel').prop('checked',false);
+    }else{
+      $('#knt_wel').prop('checked',true);
+    }
+  }
+
+  $(document).ready(function(){
+
+  });
+
+  // Kudus
+
+  function check_kudus(valx) {
+    if($(valx).prop('checked') == true){
+      $('.check_kantor_kudus').prop('checked',true);
+    }else{
+      $('.check_kantor_kudus').prop('checked',false);
+    }
+  }
+
+  function check_kudus_sub(valx) {
+    var xx = 0;
+    $('.check_kantor_kudus').each(function() {
+      if($(this).prop('checked') == false){
+        xx++;
+      }
+    });
+
+    if(xx > 0){
+      $('#knt_kds').prop('checked',false);
+    }else{
+      $('#knt_kds').prop('checked',true);
+    }
+  }
+
+  $(document).ready(function(){
+
+  });
+
+  // Pati
+
+  function check_pati(valx) {
+    if($(valx).prop('checked') == true){
+      $('.check_kantor_pati').prop('checked',true);
+    }else{
+      $('.check_kantor_pati').prop('checked',false);
+    }
+  }
+
+  function check_pati_sub(valx) {
+    var xx = 0;
+    $('.check_kantor_pati').each(function() {
+      if($(this).prop('checked') == false){
+        xx++;
+      }
+    });
+
+    if(xx > 0){
+      $('#knt_pat').prop('checked',false);
+    }else{
+      $('#knt_pat').prop('checked',true);
+    }
+  }
+
+  $(document).ready(function(){
+
+  });
+
+  // Surakarta
+
+  function check_surakarta(valx) {
+    if($(valx).prop('checked') == true){
+      $('.check_kantor_surakarta').prop('checked',true);
+    }else{
+      $('.check_kantor_surakarta').prop('checked',false);
+    }
+  }
+
+  function check_surakarta_sub(valx) {
+    var xx = 0;
+    $('.check_kantor_surakarta').each(function() {
+      if($(this).prop('checked') == false){
+        xx++;
+      }
+    });
+
+    if(xx > 0){
+      $('#knt_skt').prop('checked',false);
+    }else{
+      $('#knt_skt').prop('checked',true);
+    }
+  }
+
+  $(document).ready(function(){
+
+});
+
+// Sragen
+
+function check_sragen(valx) {
+  if($(valx).prop('checked') == true){
+    $('.check_kantor_sragen').prop('checked',true);
+  }else{
+    $('.check_kantor_sragen').prop('checked',false);
+  }
+}
+
+function check_sragen_sub(valx) {
+  var xx = 0;
+  $('.check_kantor_sragen').each(function() {
+    if($(this).prop('checked') == false){
+      xx++;
+    }
+  });
+
+  if(xx > 0){
+    $('#knt_srg').prop('checked',false);
+  }else{
+    $('#knt_srg').prop('checked',true);
+  }
+}
+
+$(document).ready(function(){
+
+});
+
+// Klaten
+
+function check_klaten(valx) {
+  if($(valx).prop('checked') == true){
+    $('.check_kantor_klaten').prop('checked',true);
+  }else{
+    $('.check_kantor_klaten').prop('checked',false);
+  }
+}
+
+function check_klaten_sub(valx) {
+  var xx = 0;
+  $('.check_kantor_klaten').each(function() {
+    if($(this).prop('checked') == false){
+      xx++;
+    }
+  });
+
+  if(xx > 0){
+    $('#knt_ktn').prop('checked',false);
+  }else{
+    $('#knt_ktn').prop('checked',true);
+  }
+}
+
+$(document).ready(function(){
+
+});
+
+// Tegal
+
+function check_tegal(valx) {
+  if($(valx).prop('checked') == true){
+    $('.check_kantor_tegal').prop('checked',true);
+  }else{
+    $('.check_kantor_tegal').prop('checked',false);
+  }
+}
+
+function check_tegal_sub(valx) {
+  var xx = 0;
+  $('.check_kantor_tegal').each(function() {
+    if($(this).prop('checked') == false){
+      xx++;
+    }
+  });
+
+  if(xx > 0){
+    $('#knt_tgl').prop('checked',false);
+  }else{
+    $('#knt_tgl').prop('checked',true);
+  }
+}
+
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Absen</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Absen</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Data Absen</h3>
+                <br>
+              </div>
+              <div class="card-body">
+                <table id="examplebaru" class="table table-bordered table-striped">  
+                    <thead>
+                        <th>No</th>
+                        <th>NIP</th>
+			                  <th>Jabatan</th>
+                        <th>Nama User</th>
+                        <th>Hari</th>
+                        <th>Join Meeting</th>
+                        <th>Agenda</th>
+                    </thead>
+                    <tbody>
+                    <?php
+                        $no = 0;
+                        $query = mysqli_query($koneksi1, "SELECT GROUP_CONCAT(absen2.nip), GROUP_CONCAT(absen2.jabatan), GROUP_CONCAT(absen2.nama_user), hari, GROUP_CONCAT(tgl_join),GROUP_CONCAT(not_dekom.agenda) FROM absen2  JOIN not_dekom ON absen2.id_offline=not_dekom.id_offline GROUP BY not_dekom.agenda");
+                        while($row = mysqli_fetch_assoc($query)){
+                          $no++;
+                          ?>
+                      <tr>
+                      <td><?php echo $no ; ?></td>
+                        <td><?php echo $row['GROUP_CONCAT(absen2.nip)']; ?></td>
+                        <td><?php echo $row['GROUP_CONCAT(absen2.jabatan)']; ?></td>
+                        <td><?php echo $row['GROUP_CONCAT(absen2.nama_user)']; ?></td>
+                        <td><?php echo $row['hari']; ?></td>
+                        <td><?php echo $row['GROUP_CONCAT(tgl_join)']; ?></td>
+                        <td><?php echo $row['GROUP_CONCAT(not_dekom.agenda)']; ?></td>
+                        
+
+                      </tr>
+                          <?php } ?>
+                    </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+
+
+
+
+
+    $no = 0;
+		$query = mysqli_query($koneksi1, "SELECT hari,not_dekom.tanggal,not_dekom.tempat,not_dekom.jam,nama_user,not_dekom.agenda,not_dekom.ket,not_dekom.jenis, jabatan FROM not_dekom RIGHT JOIN absen2 ON not_dekom.agenda=absen2.agenda LIKE '%Rapat Bisnis' OR '%Rapat Direksi' OR '%Rapat Penyelesaian Kredit Bermasalah Per Cabang' OR '%Rapat Kerja' OR '%Rapat Kredit' OR '%Rapat Pra Raker' WHERE not_dekom.agenda BETWEEN absen2.agenda AND not_dekom.agenda");
+		$row = mysqli_fetch_array($query);
+		  $no++; 
+
+
+
+
+
+
+
+      absen2
+
+      $no = 0;
+                        $query = mysqli_query($koneksi1, "SELECT * FROM absen2 GROUP BY id_offline");
+                        while($row = mysqli_fetch_assoc($query)){
+                          $no++;
+
+                          $AGD = mysqli_fetch_assoc(mysqli_query($koneksi1, "SELECT * FROM not_dekom WHERE id_offline='$row[id_offline]'"));
+
+                          $ArrPesert = [];
+                          $query1 = mysqli_query($koneksi1, "SELECT * FROM absen2 WHERE id_offline='$row[id_offline]'");
+                          while($row1 = mysqli_fetch_assoc($query1)){
+                            $KRY = mysqli_fetch_assoc(mysqli_query($koneksi1, "SELECT * FROM jabatan2 WHERE no_nik='$row[nip]'"));
+                            $ArrPesert[] = $KRY['nama_user'];
+                          }
+                          ?>
+                      <tr>
+                      <td><?php echo $no ; ?></td>
+                        <td><?php echo implode(", ",$ArrPesert); ?></td>
+                        <td><?php echo str_replace(" - "," / ",$AGD['tanggal']) ; ?></td>
+                        <td><?php echo $AGD['agenda']; ?></td>
+                        <td><a href="../../../../../sekar/format.php?id_offline=<?php echo $row['id_offline']; ?>" target="_blank">Cetak</a></td>
+                      </tr>

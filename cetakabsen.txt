@@ -1,0 +1,101 @@
+<table border="1" cellpadding="1" cellspacing="1" style="width:1000px">
+	<tbody>
+		<tr>
+			<td style="text-align:center"><strong>PT. BPR WELERI MAKMUR</strong></td>
+			<td style="text-align:center">
+			<p><strong>FORMULIR DAFTAR HADIR</strong></p>
+
+			
+			</td>
+			<td>
+			<table border="1" cellpadding="1" cellspacing="1" style="width:200px">
+				<tbody>
+					<tr>
+						<td>No. Dok&nbsp; &nbsp; :</td>
+					</tr>
+					<tr>
+						<td>Revisi&nbsp; &nbsp; &nbsp; &nbsp;:</td>
+					</tr>
+					<tr>
+						<td>Tgl.Terbit&nbsp;:</td>
+					</tr>
+					<tr>
+						<td>Halaman&nbsp; &nbsp;:</td>
+					</tr>
+				</tbody>
+			</table>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+
+<?php
+if(isset($_GET['id_offline'])){
+	$id_offline    =$_GET['id_offline'];
+}
+else {
+	die ("Error. No ID Selected!");    
+}
+include "../sekar/config/koneksi.php";
+
+		$no = 0;
+		$query = mysqli_query($koneksi1, "SELECT absen2.id_offline, GROUP_CONCAT(nama_user), GROUP_CONCAT(absen2.jabatan), not_dekom.agenda ,tanggal, tempat, jam FROM absen2 LEFT JOIN not_dekom ON absen2.id_offline=not_dekom.id_offline WHERE not_dekom.id_offline='$id_offline'");
+		$row = mysqli_fetch_array($query);
+		  $no++; 
+		?>
+          
+        
+        <p>MATERI&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  : <?php echo $row['agenda']; ?> &nbsp;<br />
+        TANGGAL&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : <?php echo $row['tanggal']; ?> &nbsp;<br />
+        TEMPAT&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; : <?php echo $row['tempat']; ?> &nbsp; <br />
+        JAM&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: <?php echo $row['jam']; ?> &nbsp; &nbsp; 
+        <p>
+        <table border="1" cellpadding="1" cellspacing="1" style="width:1000px">
+	        <br>
+	            <tbody>
+		            <tr>
+			            <td>no</td>
+			            <td style="text-align:center">Nama</td>
+			            <td style="text-align:center">Jabatan</td>
+		            </tr>
+                <?php
+if(isset($_GET['id_offline'])){
+	$id_offline    =$_GET['id_offline'];
+}
+else {
+	die ("Error. No ID Selected!");    
+}
+include "../sekar/config/koneksi.php";
+
+		$no = 0;
+		$query = mysqli_query($koneksi1, "SELECT absen2.id_offline, nama_user, absen2.jabatan, not_dekom.agenda ,tanggal, tempat, jam FROM absen2 LEFT JOIN not_dekom ON absen2.id_offline=not_dekom.id_offline WHERE not_dekom.id_offline='$id_offline'");
+		while($row = mysqli_fetch_array($query)){
+		  $no++; 
+		?>
+		<tr>
+			<td><?php echo $no ; ?></td>
+			<td><?php echo $row['nama_user']; ?></td>
+			<td><?php echo $row['jabatan']; ?></td>
+			<?php } ?>
+		</tr>
+	</tbody>
+</table>
+
+
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Pemimpin Rapat,</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <u>KERRY THAMRIM</u></p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Direktur Utama</p>
+
+		
+
+
